@@ -1,0 +1,24 @@
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    env-file:
+      - .compose-env
+
+  mysql:
+    image: mysql
+    ports:
+      # - "?:?" what port does mysql listen to
+    volume:
+      - mysqlvolume:/var/lib/mysql
+    env-file:
+      - .compose-env
+
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+
+volumes:
+  mysqlvolume:
