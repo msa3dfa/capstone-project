@@ -48,4 +48,3 @@ jobs:
           tags: |
             msa3dfa/capstone-app:latest
             msa3daf/capstone-app:${{ github.sha }}
-
