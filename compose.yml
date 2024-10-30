@@ -3,16 +3,16 @@ services:
     build: .
     ports:
       - "5000:5000"
-    env-file:
+    env_file:
       - .compose-env
 
   mysql:
     image: mysql
     ports:
-      # - "?:?" what port does mysql listen to
-    volume:
+      - "3306:3306"
+    volumes:
       - mysqlvolume:/var/lib/mysql
-    env-file:
+    env_file:
       - .compose-env
 
   redis:
