@@ -1,0 +1,26 @@
+name: Deploy app on two web servers
+
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    strategy:
+      matrix:
+        web-server:
+          - ssh_host: ${{ secrets.FIRST_HOST }}
+
+          - ssh_host: ${{ secrets.SECOND_HOST }}
+
+    name: Deploy new docker image on both web servers
+    runs-on: self-hosted 
+    steps:
+      - name: Deploy
+        run:  |
+          ssh -i /capstonev2.pem root@${{ matrix.web-server }}
+          cd /capstone-project
+          git pull
+          docker compose up -d web
