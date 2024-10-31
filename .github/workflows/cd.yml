@@ -19,8 +19,8 @@ jobs:
     runs-on: self-hosted 
     steps:
       - name: Deploy
+        env:
+          SSH_KEY: ${{ secrets.SSH_KEY }}
         run:  |
-          ssh -i /capstonev2.pem root@${{ matrix.web-server }}
-          cd /capstone-project
-          git pull
-          docker compose up -d web
+          echo $SSH_KEY > secret.pem
+          ssh -i secret.pem root@${{ matrix.web-server }} "cd /capstone-project && git pull && docker compose up -d web"
