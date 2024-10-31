@@ -19,6 +19,6 @@ jobs:
         env:
           SSH_KEY: ${{ secrets.SSH_KEY }}
         run:  |
-          echo $SSH_KEY > secret.pem
-          chmod 600 secret.pem
-          ssh -i secret.pem root@${{ matrix.web-server }} "cd /capstone-project && git pull && docker compose up -d web"
+          echo $SSH_KEY > ~/.ssh/gh_actions
+          chmod 600 ~/.ssh/gh_actions
+          ssh -i ~/.ssh/gh_actions root@${{ matrix.web-server }} "cd /capstone-project && git pull && docker compose up -d web"
