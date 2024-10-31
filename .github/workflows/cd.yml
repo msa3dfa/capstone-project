@@ -10,15 +10,12 @@ jobs:
   deploy:
     strategy:
       matrix:
-        web-server:
-          - ssh_host: ${{ vars.FIRST_HOST }}
-
-          - ssh_host: ${{ vars.SECOND_HOST }}
+        web-server: [${{ vars.FIRST_HOST }}, ${{ vars.SECOND_HOST }}]
 
     name: Deploy new docker image on both web servers
     runs-on: self-hosted 
     steps:
-      - name: Deploy
+      - name: Deploy ${{ matrix.web-server }}
         env:
           SSH_KEY: ${{ secrets.SSH_KEY }}
         run:  |
