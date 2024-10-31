@@ -11,9 +11,9 @@ jobs:
     strategy:
       matrix:
         web-server:
-          - ssh_host: ${{ secrets.FIRST_HOST }}
+          - ssh_host: ${{ vars.FIRST_HOST }}
 
-          - ssh_host: ${{ secrets.SECOND_HOST }}
+          - ssh_host: ${{ vars.SECOND_HOST }}
 
     name: Deploy new docker image on both web servers
     runs-on: self-hosted 
