@@ -1,6 +1,6 @@
 services:
   web:
-    build: .
+    image: msa3dfa/capstone-app
     ports:
       - "80:5000"
     env_file:
