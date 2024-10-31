@@ -10,7 +10,7 @@ jobs:
   deploy:
     strategy:
       matrix:
-        web-server: [${{ vars.FIRST_HOST }}, ${{ vars.SECOND_HOST }}]
+        web-server: ["${{ vars.FIRST_HOST }}", "${{ vars.SECOND_HOST }}"]
 
     name: Deploy new docker image on both web servers
     runs-on: self-hosted 
